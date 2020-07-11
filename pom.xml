@@ -68,6 +68,24 @@
                     </archive>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>de.jflex</groupId>
+                <artifactId>jflex-maven-plugin</artifactId>
+                <version>1.8.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>src/main/java/scanner</outputDirectory>
+                            <lexDefinitions>
+                                <lexDefinition>src/main/resources/scannerJFlexDefinition/Scanner.flex</lexDefinition>
+                            </lexDefinitions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 

@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.BeforeAll;
+import main.Main;
 import org.junit.jupiter.api.Test;
 
 public class MainTest {
