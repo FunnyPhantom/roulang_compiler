@@ -8,7 +8,7 @@ import shared.models.Token;
 
 // See https://github.com/jflex-de/jflex/issues/222
 @SuppressWarnings("FallThrough")
-public class Scanner {
+public class CodeScanner {
 
   /** This character denotes the end of file. */
   public static final int YYEOF = -1;
@@ -397,7 +397,7 @@ public class Scanner {
    *
    * @param   in  the java.io.Reader to read input from.
    */
-  public Scanner(java.io.Reader in) {
+  public CodeScanner(java.io.Reader in) {
     this.zzReader = in;
   }
 

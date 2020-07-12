@@ -8,9 +8,6 @@
     <artifactId>roulang_compiler</artifactId>
     <version>0.0.1-alpha</version>
     <properties>
-        <maven.compiler.source>1.13</maven.compiler.source>
-        <maven.compiler.source>1.13</maven.compiler.source>
-        <maven.compiler.release>13</maven.compiler.release>
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
@@ -39,8 +36,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.13</source>
-                    <target>1.13</target>
+                    <source>13</source>
+                    <target>13</target>
+                    <executable>${JAVA13_HOME}/bin/javac</executable>
                 </configuration>
             </plugin>
             <plugin>
@@ -82,7 +80,6 @@
                             <lexDefinitions>
                                 <lexDefinition>src/main/resources/jflexDefinitions/Scanner.flex</lexDefinition>
                             </lexDefinitions>
-
                         </configuration>
                     </execution>
                 </executions>

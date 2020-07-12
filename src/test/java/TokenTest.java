@@ -1,8 +1,8 @@
-package shared.models;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import scanner.LiteralParser;
+import shared.models.Token;
+import shared.models.TokenType;
 
 public class TokenTest {
 

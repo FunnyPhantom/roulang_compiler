@@ -1,7 +1,6 @@
-package scanner;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import scanner.LiteralParser;
 
 public class ParseNumericLiteralTest {
     LiteralParser pnl = LiteralParser.getInstance();

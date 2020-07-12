@@ -4,7 +4,7 @@ import shared.models.Token;
 %%
 %public
 
-%class Scanner
+%class CodeScanner
 %line
 %column
 %unicode

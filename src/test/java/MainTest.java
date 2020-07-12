@@ -1,4 +1,5 @@
-import main.Main;
+
+import appl.Main;
 import org.junit.jupiter.api.Test;
 
 public class MainTest {
