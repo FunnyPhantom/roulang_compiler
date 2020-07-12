@@ -2,25 +2,36 @@ package shared.models;
 
 import lombok.Getter;
 
+import java.util.Objects;
+
 public class Token {
     @Getter
-    private final String token;
-    @Getter
     private final TokenType type;
-
+    @Getter
+    private final Object value;
     @Getter
     private final int line;
     @Getter
     private final int column;
 
-    private Token(String token, TokenType type, int line, int column) {
-        this.token = token;
+    private Token(Object value, TokenType type, int line, int column) {
         this.type = type;
         this.line = line;
         this.column = column;
+        this.value = value;
     }
 
-    public static Token of(String token, TokenType tokenType, int line, int column) {
-        return new Token(token, tokenType, line, column);
+
+    public static Token of(Object value, TokenType tokenType, int line, int column) {
+        return new Token(value, tokenType, line, column);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Token)) return false;
+        Token token1 = (Token) o;
+        return type == token1.type && Objects.equals(value, token1.value);
+    }
+
 }

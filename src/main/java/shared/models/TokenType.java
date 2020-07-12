@@ -2,7 +2,10 @@ package shared.models;
 
 public enum TokenType {
     KEYWORD,
-    VALUE,
+    STRING_LITERAL,
+    CHAR_LITERAL,
+    INTEGER_LITERAL,
+    FLOAT_LITERAL,
     IDENTIFIER,
     OTHER
 }

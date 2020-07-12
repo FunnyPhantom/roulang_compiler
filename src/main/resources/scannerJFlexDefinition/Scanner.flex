@@ -11,9 +11,8 @@ import shared.models.Token;
 
 
 %{
-
-
-
+    LiteralParser literalParser = LiteralParser.getInstance();
+    StringBuilder sb = new StringBuilder();
 %}
 
 d = [0-9]
@@ -29,12 +28,15 @@ functions = sizeof|function|println|return|new|in
 
 key_words = goto|record|{functions}|{loops}|{condition}|{bools}|{prefix}|{type}|{identifier_len}
 
-integers = {d}+[Ll]?
+integers = [+-]?{d}+
+longs = {integers}L
+decimal_int = {integers}|{longs}
 hex = 0x{d}+
-real = \.{d}+|{d}+\.|{d}+\.{d}+
-scientific = {real}e[\+\-]{integers}
+real = [+-]?({d}+\.{d}+|\.{d}+|{d}+\.)
+scientific = {real}e{integers}
 
-numbers = {integers}|{hex}|{real}|{scientific}
+floating_point_numbers = {real}|{scientific}
+
 
 end_of_line = \r\n|\n|\r
 whitespaces = [ ]+
@@ -50,42 +52,46 @@ multi_line_commnet = {comment_begin}(.|{end_of_line})*{comment_end}
 
 comment = {single_line_comment} | {multi_line_commnet}
 
-quote = '
-escaped_quote = \\'
-double_quote = \"
-escaped_double_quote = \\\"
-
-
 identifier = [{c}|_][{c}|{d}|_]*
 
 
-%x string_quote, string_double_quote
+%x  string_double_quote
 
 %%
 
-<string_quote> {
-    {quote} {maker.addString(yytext());yybegin(YYINITIAL);}
-    [^] {maker.addString(yytext());}
-}
+
+{floating_point_numbers}    {return Token.of(literalParser.parseFloat(yytext()), TokenType.FLOAT_LITERAL, yyline, yycolumn);}
+{decimal_int}               {return Token.of(literalParser.parseDecimal(yytext()), TokenType.INTEGER_LITERAL, yyline, yycolumn);}
+{hex}                       {return Token.of(literalParser.parseHexInt(yytext()), TokenType.INTEGER_LITERAL, yyline, yycolumn);}
+
+{key_words}     {return Token.of(yytext(), TokenType.KEYWORD, yyline, yycolumn);}
+{identifier}    {return Token.of(yytext(), TokenType.IDENTIFIER, yyline, yycolumn);}
+
+
+'\\t'   {return Token.of('\t', TokenType.CHAR_LITERAL, yyline, yycolumn);}
+'\\n'   {return Token.of('\n', TokenType.CHAR_LITERAL, yyline, yycolumn);}
+'\\r'   {return Token.of('\r', TokenType.CHAR_LITERAL, yyline, yycolumn);}
+'\\''   {return Token.of('\'', TokenType.CHAR_LITERAL, yyline, yycolumn);}
+'\\'    {return Token.of('\\', TokenType.CHAR_LITERAL, yyline, yycolumn);}
+'.'     {return Token.of(yytext().charAt(1), TokenType.CHAR_LITERAL, yyline, yycolumn);}
+
+
+{double_quote}  {yybegin(string_double_quote); sb.setLength(0);}
 <string_double_quote> {
-    {escaped_double_quote} { maker.addSpecialChar(yytext());}
-    {special_char} {maker.addSpecialChar(yytext());}
-    {double_quote} {maker.addString(yytext());yybegin(YYINITIAL);}
-    [^] {maker.addString(yytext());}
+    \"                      {yybegin(YYINITIAL); return Token.of(sb.toString(), TokenType.STRING_LITERAL, yyline, yycolumn);}
+    \\t                     {sb.append('\t');}
+    \\n                     {sb.append('\n');}
+    \\r                     {sb.append('\r');}
+    \\\"                    {sb.append('\"');}
+    \\                      {sb.append('\\');}
+    [^{end_of_line}\"\\]+   {sb.append(yytext());}
 }
 
-{end_of_line} {}
-{whitespaces} {}
-{real} {return Token.of(yytext(), TokenType.VALUE, yyline, yycolumn);}
-{scientific} {return Token.of(yytext(), TokenType.VALUE, yyline, yycolumn);}
-{integers} {return Token.of(yytext(), TokenType.VALUE, yyline, yycolumn);}
-{hex} {return Token.of(yytext(), TokenType.VALUE, yyline, yycolumn);}
-{key_words} {return Token.of(yytext(), TokenType.KEYWORD, yyline, yycolumn);}
-{identifier} {return Token.of(yytext(), TokenType.IDENTIFIER, yyline, yycolumn);}
-{comment} {}
-{quote} {yybegin(string_quote);}
-{double_quote} {yybegin(string_double_quote);}
-[^] {throw new Error(String.format("Illegal character <%s> at line: %d column: %d", yytext(), yyline, yycolumn));}
+{comment}       {}
+{end_of_line}   {}
+{whitespaces}   {}
+
+[^]     {throw new Error(String.format("Illegal character <%s> at line: %d column: %d", yytext(), yyline, yycolumn));}
 
 
 
