@@ -8,7 +8,6 @@ import shared.models.Token;
 %line
 %column
 %unicode
-%standalone
 %function getNext
 %type Token
 
