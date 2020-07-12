@@ -7,5 +7,6 @@ public enum TokenType {
     INTEGER_LITERAL,
     FLOAT_LITERAL,
     IDENTIFIER,
+    EOF,
     OTHER
 }

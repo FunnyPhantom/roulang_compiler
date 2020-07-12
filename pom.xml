@@ -78,10 +78,11 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>src/main/java/scanner</outputDirectory>
+                            <outputDirectory>src/main/java</outputDirectory>
                             <lexDefinitions>
-                                <lexDefinition>src/main/resources/scannerJFlexDefinition/Scanner.flex</lexDefinition>
+                                <lexDefinition>src/main/resources/jflexDefinitions/Scanner.flex</lexDefinition>
                             </lexDefinitions>
+
                         </configuration>
                     </execution>
                 </executions>

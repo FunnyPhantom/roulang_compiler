@@ -1,4 +1,4 @@
-
+package scanner;
 import shared.models.TokenType;
 import shared.models.Token;
 %%
@@ -8,12 +8,18 @@ import shared.models.Token;
 %line
 %column
 %unicode
-
+%standalone
+%function getNext
+%type Token
 
 %{
     LiteralParser literalParser = LiteralParser.getInstance();
     StringBuilder sb = new StringBuilder();
 %}
+
+%eofval{
+    return Token.of(null, TokenType.EOF, yyline, yycolumn);
+%eofval}
 
 d = [0-9]
 c = [a-zA-Z]
@@ -41,7 +47,6 @@ floating_point_numbers = {real}|{scientific}
 end_of_line = \r\n|\n|\r
 whitespaces = [ ]+
 
-special_char = \\.
 
 comment_single = \/\/
 comment_begin = \/\*
@@ -76,7 +81,7 @@ identifier = [{c}|_][{c}|{d}|_]*
 '.'     {return Token.of(yytext().charAt(1), TokenType.CHAR_LITERAL, yyline, yycolumn);}
 
 
-{double_quote}  {yybegin(string_double_quote); sb.setLength(0);}
+\" {yybegin(string_double_quote); sb.setLength(0);}
 <string_double_quote> {
     \"                      {yybegin(YYINITIAL); return Token.of(sb.toString(), TokenType.STRING_LITERAL, yyline, yycolumn);}
     \\t                     {sb.append('\t');}
@@ -84,7 +89,7 @@ identifier = [{c}|_][{c}|{d}|_]*
     \\r                     {sb.append('\r');}
     \\\"                    {sb.append('\"');}
     \\                      {sb.append('\\');}
-    [^{end_of_line}\"\\]+   {sb.append(yytext());}
+    [^\n\r\"\\]+   {sb.append(yytext());}
 }
 
 {comment}       {}
