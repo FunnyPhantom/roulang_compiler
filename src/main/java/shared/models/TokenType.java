@@ -8,7 +8,9 @@ public enum TokenType {
     FLOAT_LITERAL,
     IDENTIFIER,
     ETC,
-    SEMICOLON,
     EOF,
-    OTHER
+    SEMICOLON,
+    COMMA,
+    VAR_TYPE,
+
 }

@@ -23,15 +23,15 @@ import shared.models.Token;
 d = [0-9]
 c = [a-zA-Z]
 
-identifier_len = short|long
-type = int|float|double|char|string|auto|bool|void
+
+type = int|float|double|char|string|auto|bool|void|short|long
 prefix = volatile|const|static|signed
 bools = true|false
 condition = if|else
 loops = switch|case|default|for|foreach|while|do|break|continue|repeat|until
 functions = sizeof|function|println|return|new|in|start
 
-key_words = goto|record|{functions}|{loops}|{condition}|{bools}|{prefix}|{type}|{identifier_len}
+key_words = goto|record|{functions}|{loops}|{condition}|{bools}|{prefix}
 
 integers = [+-]?{d}+
 longs = {integers}L
@@ -58,7 +58,8 @@ comment = {single_line_comment} | {multi_line_commnet}
 
 identifier = [{c}|_][{c}|{d}|_]*
 
-etc = \( | \) | \{ | \}
+etc = (\=\=)|(\!\=)|(\<\=)|(\>\=)|(\+\+)|(\-\-)|(\-\=)|(and)|(\*\=)|(or)|(\/\=)|(not)|(\+\=)|([=.:\[\]<>\-~&\/|%\^*()+{}])
+comma = ([,])
 
 
 %x  string_double_quote
@@ -70,10 +71,13 @@ etc = \( | \) | \{ | \}
 {decimal_int}               {return Token.of(literalParser.parseDecimal(yytext()), TokenType.INTEGER_LITERAL, yyline, yycolumn);}
 {hex}                       {return Token.of(literalParser.parseHexInt(yytext()), TokenType.INTEGER_LITERAL, yyline, yycolumn);}
 
+{type}          {return Token.of(yytext(), TokenType.VAR_TYPE, yyline, yycolumn);}
 {key_words}     {return Token.of(yytext(), TokenType.KEYWORD, yyline, yycolumn);}
 {identifier}    {return Token.of(yytext(), TokenType.IDENTIFIER, yyline, yycolumn);}
 {etc}           {return Token.of(yytext(), TokenType.ETC, yyline, yycolumn);}
 ;               {return Token.of(yytext(), TokenType.SEMICOLON, yyline, yycolumn); }
+{comma}               {return Token.of(yytext(), TokenType.COMMA, yyline, yycolumn); }
+
 
 '\\t'   {return Token.of('\t', TokenType.CHAR_LITERAL, yyline, yycolumn);}
 '\\n'   {return Token.of('\n', TokenType.CHAR_LITERAL, yyline, yycolumn);}

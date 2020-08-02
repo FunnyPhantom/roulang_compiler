@@ -39,8 +39,6 @@ public class Lexical{
             System.out.println(">> "+currentToken);
 
             switch (currentToken.getType()) {
-                  case INTEGER_LITERAL:
-                        return "icv";
                   case IDENTIFIER:
                         switch (currentToken.getValue().toString()){
                               case "start":
@@ -48,7 +46,18 @@ public class Lexical{
                               default:
                                     return "id";
                         }
-
+                  case VAR_TYPE:
+                  return "type_id";
+                  case COMMA:
+                        return "#comma";
+                  case INTEGER_LITERAL:
+                        return "#icv";
+                  case CHAR_LITERAL:
+                        return "#ccv";
+                  case FLOAT_LITERAL:
+                        return "#fcv";
+                  case STRING_LITERAL:
+                        return "#scv";
                   default:
                         return currentToken.getValue().toString();
 

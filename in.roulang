@@ -1,5 +1,12 @@
 function void start(){
-
+    int a = 2;
+    int b = 3;
+    int c = 4;
+    string d = "salam mamadiii";
     // some comment
  //   return;
 };
+
+function string getMamad(int a, long b) {
+    return;
+}
