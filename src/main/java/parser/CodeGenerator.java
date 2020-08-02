@@ -25,6 +25,8 @@ public class CodeGenerator{
             switch (semantic) {
                   case "parseFinished":
                         doStuff();
+                  case "add_to_stack":
+                        System.out.println(l.currentToken());
             }
 
       }
