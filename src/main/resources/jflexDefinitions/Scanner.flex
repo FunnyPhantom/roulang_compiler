@@ -44,7 +44,7 @@ floating_point_numbers = {real}|{scientific}
 
 
 end_of_line = \r\n|\n|\r
-whitespaces = [ ]+
+whitespaces = [ \t]+
 
 
 comment_single = \/\/

@@ -1,5 +1,6 @@
 package parser;
 
+import lombok.Getter;
 import scanner.CodeScanner;
 import shared.models.Token;
 
@@ -12,8 +13,13 @@ public class Lexical{
       final CodeScanner cs;
       private Token currentToken = null;
 
+      @Getter
+      private File in;
+
+
       public Lexical(File in){
             try{
+                  this.in = in;
                   cs  = new CodeScanner( new FileReader(in));
             }catch(Exception e){
                   throw new RuntimeException(e);

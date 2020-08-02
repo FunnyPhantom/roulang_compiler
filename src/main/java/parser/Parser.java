@@ -147,6 +147,7 @@ public class Parser {
                     break;
                 case ACCEPT:
                     accepted = true;
+                    doSemantics(List.of("parseFinished"));
                     break;
             }
         }

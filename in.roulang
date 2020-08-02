@@ -1,12 +1,28 @@
 function void start(){
-    int a = 2;
-    int b = 3;
-    int c = 4;
-    string d = "salam mamadiii";
-    // some comment
- //   return;
-};
+   	/** arithmetic Operations**/
+	int number1 = 432;
+	long number2 = (long) 19e2;
+	bool cmp = number1 > number2;
+	double PI = 3.14;
+	double Area1 = PI * number1 * number1;
+	long Area2 = (long) PI * number2 * number2;
+	Println(Area1);
+	Println(Area2);
 
-function string getMamad(int a, long b) {
-    return;
-}
+	/** Array and Memory Operations **/
+	auto arr = new int[5];
+	for ( int i = 0 ; i<5 ; i++ ) {
+		arr[i] = i;
+	};
+
+	int max = arr[0];
+	for ( int i = 1 ; i<5 ; i++ ) {
+		if ( arr[i]>max ){
+			max = arr[i];
+		};
+		continue;
+	};
+
+	Println(max);
+	return;
+};

@@ -125,6 +125,16 @@
         "anchorY": 546.0,
         "isGraph": true,
         "isGlobal": false
+      },
+      {
+        "start": 2,
+        "end": 3,
+        "token": "RETURN_STATEMENT",
+        "func": "",
+        "anchorX": 490.0,
+        "anchorY": 195.0,
+        "isGraph": true,
+        "isGlobal": false
       }
     ],
     "start": 2
@@ -2504,7 +2514,7 @@
         "x": 462.0,
         "y": 214.0,
         "id": 138,
-        "isFinal": false
+        "isFinal": true
       }
     ],
     "edges": [
@@ -3396,5 +3406,51 @@
       }
     ],
     "start": 176
+  },
+  {
+    "name": "RETURN_STATEMENT",
+    "nodes": [
+      {
+        "x": 296.0,
+        "y": 324.0,
+        "id": 181,
+        "isFinal": false
+      },
+      {
+        "x": 619.0,
+        "y": 329.0,
+        "id": 182,
+        "isFinal": true
+      },
+      {
+        "x": 800.0,
+        "y": 328.0,
+        "id": 183,
+        "isFinal": true
+      }
+    ],
+    "edges": [
+      {
+        "start": 181,
+        "end": 182,
+        "token": "return",
+        "func": "",
+        "anchorX": 457.5,
+        "anchorY": 326.5,
+        "isGraph": false,
+        "isGlobal": false
+      },
+      {
+        "start": 182,
+        "end": 183,
+        "token": "EXPR",
+        "func": "",
+        "anchorX": 709.5,
+        "anchorY": 328.5,
+        "isGraph": true,
+        "isGlobal": false
+      }
+    ],
+    "start": 181
   }
 ]
