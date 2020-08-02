@@ -121,7 +121,6 @@ public class Parser {
                     generateError("Unable to parse input.");
                 case SHIFT:
                     doSemantics(cell.getFunction());
-                    doSemantics(List.of("add_to_stack"));
                     tokenID = nextTokenID();
                     currentNode = cell.getTarget();
                     recoveryState.clear();

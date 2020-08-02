@@ -25,8 +25,8 @@ public class CodeGenerator{
             switch (semantic) {
                   case "parseFinished":
                         doStuff();
-                  case "add_to_stack":
-                        System.out.println(l.currentToken());
+                  case "make_type":
+                        l.addRecord();
             }
 
       }
@@ -43,7 +43,7 @@ public class CodeGenerator{
                   var lastLine = lines.size() -1;
                   lines.addAll(lastLine,tarTamizedCode);
                   File file = new File("./Code.java");
-//                  file.deleteOnExit();
+                  file.deleteOnExit();
                   Files.write(file.toPath(), lines);
                   Process proc = new ProcessBuilder("javac", "./Code.java").start();
                   proc.waitFor();
@@ -73,28 +73,52 @@ public class CodeGenerator{
 
       private List<String> transform(List<String> code) {
             var allcode = String.join("\n", code);
+            // handle func
             allcode = allcode.replaceAll("\\bfunction\\b", "");
+            // handle auto
             allcode = allcode.replaceAll("\\bauto\\b", "var");
+            // handle boolean
             allcode = allcode.replaceAll("\\bbool\\b", "boolean");
+            // handle arg pass
             allcode = allcode.replaceFirst("\\bstart[ \\t]*\\([ \\t]*\\)",
                     "start(String[] args)");
+            // handle boolean ops
             allcode = allcode.replaceAll("\\band\\b", "&&");
             allcode = allcode.replaceAll("\\bor\\b", "||");
             allcode = allcode.replaceAll("\\bnot\\b", "!");
+
+            // handle string class
             allcode = allcode.replaceAll("\\bstring\\b", "String");
             allcode = allcode.replaceAll("\\bstring\\[\\]", "String[]");
 
-            var pattern = Pattern.compile("\\bvoid\\b");
-            var matcher = pattern.matcher(allcode);
-            if (matcher.find()) {
-                  System.out.println("mathc");
-                  matcher.results().forEach(matchResult -> {
-                        System.out.println(matchResult.groupCount());
-                        System.out.println(matchResult.group());
-                  });
-            } else {
-                  System.out.println("no match");
-            }
+            // handle repeat until
+            allcode = allcode.replaceAll("\\brepeat\\b", "do");
+            allcode = allcode.replaceAll("\\buntil\\b", "while");
+
+            // handle switch case
+            allcode = allcode.replaceAll("\\bof\\b", "");
+            allcode = allcode.replaceAll("\\bbegin\\b", "{");
+            allcode = allcode.replaceAll("\\bend\\b", "}");
+
+            //handle foreach
+            allcode = allcode.replaceAll("\\bforeach\\b", "for");
+            allcode = allcode.replaceAll("\\bin\\b", ":");
+
+            // handle input overloading
+            allcode = allcode.replaceAll("Input \\([ \\t\\n]*int[ \\t\\n]*\\)", "Input(idum)");
+            allcode = allcode.replaceAll("Input \\([ \\t\\n]*long[ \\t\\n]*\\)", "Input(ldum)");
+            allcode = allcode.replaceAll("Input \\([ \\t\\n]*double[ \\t\\n]*\\)", "Input(ddum)");
+            allcode = allcode.replaceAll("Input \\([ \\t\\n]*float[ \\t\\n]*\\)", "Input(fdum)");
+            allcode = allcode.replaceAll("Input \\([ \\t\\n]*char[ \\t\\n]*\\)", "Input(cdum)");
+            allcode = allcode.replaceAll("Input \\([ \\t\\n]*string[ \\t\\n]*\\)", "Input(sdum)");
+            allcode = allcode.replaceAll("Input \\([ \\t\\n]*short[ \\t\\n]*\\)", "Input(idum)");
+
+            // handle record;
+            allcode = allcode.replaceAll("\\brecord\\b", "class");
+
+            // handle const;
+            allcode = allcode.replaceAll("\\bconst\\b", "final");
+
 
             return List.of(allcode.split("\n"));
       }

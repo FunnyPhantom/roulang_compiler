@@ -17,6 +17,14 @@ public class Code {
         code.start(args);
     }
 
+    int idum;
+    long ldum;
+    boolean bdum;
+    String sdum;
+    float fdum;
+    double ddum;
+    char cdum;
+
 
     void Println(boolean x) {
         System.out.println(x);

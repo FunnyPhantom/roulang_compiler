@@ -1,3 +1,9 @@
+
+record Mamad {
+    int a;
+    long b;
+};
+
 function void start(){
    	/** arithmetic Operations**/
 	int number1 = 432;
@@ -24,5 +30,31 @@ function void start(){
 	};
 
 	Println(max);
+	Mamad mamad = new Mamad();
+	mamad.a = 3;
+	mamad.b = 5;
+	Println(mamad.a);
 	return;
+};
+
+function void salam(int i) {
+    Println("che khabara haji");
+};
+function void salam(long b) {
+    Println("bah bah");
+};
+
+int b = 2;
+
+int[] arrs = new int[10];
+
+function void cap() {
+    repeat {
+        int a = 2;
+        b++;
+    } until (b == 10);
+
+    foreach (int a in arrs) {
+        Println(a);
+    };
 };
