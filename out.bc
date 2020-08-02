@@ -1,0 +1,425 @@
+Compiled from "Code.java"
+public class Code {
+  public static final int LONG_FIELD_SIZE;
+
+  public static final int INT_FIELD_SIZE;
+
+  public static final int SHORT_FIELD_SIZE;
+
+  public static final int CHAR_FIELD_SIZE;
+
+  public static final int BYTE_FIELD_SIZE;
+
+  public static final int BOOLEAN_FIELD_SIZE;
+
+  public static final int DOUBLE_FIELD_SIZE;
+
+  public static final int FLOAT_FIELD_SIZE;
+
+  java.util.Scanner sc;
+
+  int idum;
+
+  long ldum;
+
+  boolean bdum;
+
+  java.lang.String sdum;
+
+  float fdum;
+
+  double ddum;
+
+  char cdum;
+
+  int b;
+
+  int[] arrs;
+
+  public Code();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #7                  // class java/util/Scanner
+       8: dup
+       9: getstatic     #9                  // Field java/lang/System.in:Ljava/io/InputStream;
+      12: invokespecial #15                 // Method java/util/Scanner."<init>":(Ljava/io/InputStream;)V
+      15: putfield      #18                 // Field sc:Ljava/util/Scanner;
+      18: aload_0
+      19: iconst_2
+      20: putfield      #24                 // Field b:I
+      23: aload_0
+      24: bipush        10
+      26: newarray       int
+      28: putfield      #28                 // Field arrs:[I
+      31: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: new           #19                 // class Code
+       3: dup
+       4: invokespecial #32                 // Method "<init>":()V
+       7: astore_1
+       8: aload_1
+       9: aload_0
+      10: invokevirtual #33                 // Method start:([Ljava/lang/String;)V
+      13: return
+
+  void Println(boolean);
+    Code:
+       0: getstatic     #37                 // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: iload_1
+       4: invokevirtual #41                 // Method java/io/PrintStream.println:(Z)V
+       7: return
+
+  void Println(char);
+    Code:
+       0: getstatic     #37                 // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: iload_1
+       4: invokevirtual #47                 // Method java/io/PrintStream.println:(C)V
+       7: return
+
+  void Println(int);
+    Code:
+       0: getstatic     #37                 // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: iload_1
+       4: invokevirtual #50                 // Method java/io/PrintStream.println:(I)V
+       7: return
+
+  void Println(long);
+    Code:
+       0: getstatic     #37                 // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: lload_1
+       4: invokevirtual #53                 // Method java/io/PrintStream.println:(J)V
+       7: return
+
+  void Println(float);
+    Code:
+       0: getstatic     #37                 // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: fload_1
+       4: invokevirtual #56                 // Method java/io/PrintStream.println:(F)V
+       7: return
+
+  void Println(double);
+    Code:
+       0: getstatic     #37                 // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: dload_1
+       4: invokevirtual #59                 // Method java/io/PrintStream.println:(D)V
+       7: return
+
+  void Println(char[]);
+    Code:
+       0: getstatic     #37                 // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: aload_1
+       4: invokevirtual #62                 // Method java/io/PrintStream.println:([C)V
+       7: return
+
+  void Println(java.lang.String);
+    Code:
+       0: getstatic     #37                 // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: aload_1
+       4: invokevirtual #65                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       7: return
+
+  void Println(short);
+    Code:
+       0: getstatic     #37                 // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: iload_1
+       4: invokevirtual #50                 // Method java/io/PrintStream.println:(I)V
+       7: return
+
+  void Println(java.lang.Object);
+    Code:
+       0: getstatic     #37                 // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: aload_1
+       4: invokevirtual #68                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+       7: return
+
+  java.lang.String Input(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field sc:Ljava/util/Scanner;
+       4: invokevirtual #71                 // Method java/util/Scanner.nextLine:()Ljava/lang/String;
+       7: areturn
+
+  boolean Input(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field sc:Ljava/util/Scanner;
+       4: invokevirtual #75                 // Method java/util/Scanner.nextBoolean:()Z
+       7: ireturn
+
+  char Input(char);
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field sc:Ljava/util/Scanner;
+       4: invokevirtual #71                 // Method java/util/Scanner.nextLine:()Ljava/lang/String;
+       7: iconst_0
+       8: invokevirtual #79                 // Method java/lang/String.charAt:(I)C
+      11: ireturn
+
+  float Input(float);
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field sc:Ljava/util/Scanner;
+       4: invokevirtual #85                 // Method java/util/Scanner.nextFloat:()F
+       7: freturn
+
+  double Input(double);
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field sc:Ljava/util/Scanner;
+       4: invokevirtual #89                 // Method java/util/Scanner.nextDouble:()D
+       7: dreturn
+
+  int Input(int);
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field sc:Ljava/util/Scanner;
+       4: invokevirtual #93                 // Method java/util/Scanner.nextInt:()I
+       7: ireturn
+
+  long Input(long);
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field sc:Ljava/util/Scanner;
+       4: invokevirtual #97                 // Method java/util/Scanner.nextLong:()J
+       7: lreturn
+
+  int Sizeof(long);
+    Code:
+       0: bipush        8
+       2: ireturn
+
+  int Sizeof(int);
+    Code:
+       0: iconst_4
+       1: ireturn
+
+  int Sizeof(short);
+    Code:
+       0: iconst_2
+       1: ireturn
+
+  int Sizeof(char);
+    Code:
+       0: iconst_2
+       1: ireturn
+
+  int Sizeof(byte);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  int Sizeof(boolean);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  int Sizeof(double);
+    Code:
+       0: bipush        8
+       2: ireturn
+
+  int Sizeof(float);
+    Code:
+       0: iconst_4
+       1: ireturn
+
+  int Len(boolean[]);
+    Code:
+       0: aload_1
+       1: arraylength
+       2: ireturn
+
+  int Len(char[]);
+    Code:
+       0: aload_1
+       1: arraylength
+       2: ireturn
+
+  int Len(int[]);
+    Code:
+       0: aload_1
+       1: arraylength
+       2: ireturn
+
+  int Len(long[]);
+    Code:
+       0: aload_1
+       1: arraylength
+       2: ireturn
+
+  int Len(float[]);
+    Code:
+       0: aload_1
+       1: arraylength
+       2: ireturn
+
+  int Len(double[]);
+    Code:
+       0: aload_1
+       1: arraylength
+       2: ireturn
+
+  int Len(java.lang.String);
+    Code:
+       0: aload_1
+       1: invokevirtual #101                // Method java/lang/String.length:()I
+       4: ireturn
+
+  int Len(short[]);
+    Code:
+       0: aload_1
+       1: arraylength
+       2: ireturn
+
+  int Len(java.lang.Object[]);
+    Code:
+       0: aload_1
+       1: arraylength
+       2: ireturn
+
+  void start(java.lang.String[]);
+    Code:
+       0: sipush        432
+       3: istore_2
+       4: ldc2_w        #104                // long 1900l
+       7: lstore_3
+       8: iload_2
+       9: i2l
+      10: lload_3
+      11: lcmp
+      12: ifle          19
+      15: iconst_1
+      16: goto          20
+      19: iconst_0
+      20: istore        5
+      22: ldc2_w        #106                // double 3.14d
+      25: dstore        6
+      27: dload         6
+      29: iload_2
+      30: i2d
+      31: dmul
+      32: iload_2
+      33: i2d
+      34: dmul
+      35: dstore        8
+      37: dload         6
+      39: d2l
+      40: lload_3
+      41: lmul
+      42: lload_3
+      43: lmul
+      44: lstore        10
+      46: aload_0
+      47: dload         8
+      49: invokevirtual #108                // Method Println:(D)V
+      52: aload_0
+      53: lload         10
+      55: invokevirtual #111                // Method Println:(J)V
+      58: iconst_5
+      59: newarray       int
+      61: astore        12
+      63: iconst_0
+      64: istore        13
+      66: iload         13
+      68: iconst_5
+      69: if_icmpge     85
+      72: aload         12
+      74: iload         13
+      76: iload         13
+      78: iastore
+      79: iinc          13, 1
+      82: goto          66
+      85: aload         12
+      87: iconst_0
+      88: iaload
+      89: istore        13
+      91: iconst_1
+      92: istore        14
+      94: iload         14
+      96: iconst_5
+      97: if_icmpge     123
+     100: aload         12
+     102: iload         14
+     104: iaload
+     105: iload         13
+     107: if_icmple     117
+     110: aload         12
+     112: iload         14
+     114: iaload
+     115: istore        13
+     117: iinc          14, 1
+     120: goto          94
+     123: aload_0
+     124: iload         13
+     126: invokevirtual #113                // Method Println:(I)V
+     129: new           #115                // class Code$Mamad
+     132: dup
+     133: aload_0
+     134: invokespecial #117                // Method Code$Mamad."<init>":(LCode;)V
+     137: astore        14
+     139: aload         14
+     141: iconst_3
+     142: putfield      #120                // Field Code$Mamad.a:I
+     145: aload         14
+     147: ldc2_w        #123                // long 5l
+     150: putfield      #125                // Field Code$Mamad.b:J
+     153: aload_0
+     154: aload         14
+     156: getfield      #120                // Field Code$Mamad.a:I
+     159: invokevirtual #113                // Method Println:(I)V
+     162: return
+
+  void salam(int);
+    Code:
+       0: aload_0
+       1: ldc           #128                // String che khabara haji
+       3: invokevirtual #130                // Method Println:(Ljava/lang/String;)V
+       6: return
+
+  void salam(long);
+    Code:
+       0: aload_0
+       1: ldc           #132                // String bah bah
+       3: invokevirtual #130                // Method Println:(Ljava/lang/String;)V
+       6: return
+
+  void cap();
+    Code:
+       0: iconst_2
+       1: istore_1
+       2: aload_0
+       3: dup
+       4: getfield      #24                 // Field b:I
+       7: iconst_1
+       8: iadd
+       9: putfield      #24                 // Field b:I
+      12: aload_0
+      13: getfield      #24                 // Field b:I
+      16: bipush        10
+      18: if_icmpeq     0
+      21: aload_0
+      22: getfield      #28                 // Field arrs:[I
+      25: astore_1
+      26: aload_1
+      27: arraylength
+      28: istore_2
+      29: iconst_0
+      30: istore_3
+      31: iload_3
+      32: iload_2
+      33: if_icmpge     53
+      36: aload_1
+      37: iload_3
+      38: iaload
+      39: istore        4
+      41: aload_0
+      42: iload         4
+      44: invokevirtual #113                // Method Println:(I)V
+      47: iinc          3, 1
+      50: goto          31
+      53: return
+}
