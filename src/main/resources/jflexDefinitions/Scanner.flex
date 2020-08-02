@@ -29,7 +29,7 @@ prefix = volatile|const|static|signed
 bools = true|false
 condition = if|else
 loops = switch|case|default|for|foreach|while|do|break|continue|repeat|until
-functions = sizeof|function|println|return|new|in
+functions = sizeof|function|println|return|new|in|start
 
 key_words = goto|record|{functions}|{loops}|{condition}|{bools}|{prefix}|{type}|{identifier_len}
 
@@ -58,6 +58,8 @@ comment = {single_line_comment} | {multi_line_commnet}
 
 identifier = [{c}|_][{c}|{d}|_]*
 
+etc = \( | \) | \{ | \}
+
 
 %x  string_double_quote
 
@@ -70,7 +72,8 @@ identifier = [{c}|_][{c}|{d}|_]*
 
 {key_words}     {return Token.of(yytext(), TokenType.KEYWORD, yyline, yycolumn);}
 {identifier}    {return Token.of(yytext(), TokenType.IDENTIFIER, yyline, yycolumn);}
-
+{etc}           {return Token.of(yytext(), TokenType.ETC, yyline, yycolumn);}
+;               {return Token.of(yytext(), TokenType.SEMICOLON, yyline, yycolumn); }
 
 '\\t'   {return Token.of('\t', TokenType.CHAR_LITERAL, yyline, yycolumn);}
 '\\n'   {return Token.of('\n', TokenType.CHAR_LITERAL, yyline, yycolumn);}
@@ -96,7 +99,3 @@ identifier = [{c}|_][{c}|{d}|_]*
 {whitespaces}   {}
 
 [^]     {throw new Error(String.format("Illegal character <%s> at line: %d column: %d", yytext(), yyline, yycolumn));}
-
-
-
-
