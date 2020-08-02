@@ -81,7 +81,6 @@ public class CodeGenerator{
             allcode = allcode.replaceAll("\\bnot\\b", "!");
             allcode = allcode.replaceAll("\\bstring\\b", "String");
             allcode = allcode.replaceAll("\\bstring\\[\\]", "String[]");
-            
 
             var pattern = Pattern.compile("\\bvoid\\b");
             var matcher = pattern.matcher(allcode);
